@@ -29,7 +29,3 @@ def demo(request,year,mon,day):
         return HttpResponse('%s年%s月%s日是第%s天'%(year,mon,day,days))
 
 
-def add():
-    pass
-
-
