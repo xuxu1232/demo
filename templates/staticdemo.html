@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>statidemo</title>
+    <link rel="stylesheet" href="/static/css/1.css">
+</head>
+<body>
+<a href="/index">回到首页</a>
+    <h2>明星人物</h2>
+    {% for one in params %}
+        <h3>{{ one.name }}</h3>
+        <a href={{ one.url }} target="_blank"><img src="/static/images/{{ one.img }}"></a>
+    {% endfor %}
+</body>
+</html>

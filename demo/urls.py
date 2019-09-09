@@ -22,5 +22,12 @@ urlpatterns = [
     path('index/',views.index),
     path('about/',views.about),
     path('show',views.show),
-    re_path(r'demo/(?P<year>\d{4})/(?P<mon>\d+)/(?P<day>\d+)',views.demo)
+    re_path('^$',views.index),
+    re_path(r'demo/(?P<year>\d{4})/(?P<mon>\d+)/(?P<day>\d+)',views.demo),
+    path('gethtml/',views.gethtml),
+    path('indextmp',views.indextmp),
+    path('abc/',views.abc),
+    path('abcd/',views.abcd),
+    re_path('yufa/(\d+)/',views.yufa),
+    path('staticdemo/',views.staticdemo)
 ]

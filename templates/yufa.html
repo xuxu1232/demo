@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yufa</title>
+</head>
+<body>
+    <h2>姓名：{{ name }}<br>
+        年龄：{{ age }}<br>
+        性别：{{ gender }}<br>
+    </h2>
+    <h2>爱好：{{ hobby }}</h2>
+    <h2>第一个爱好：{{ hobby.0 }}</h2>
+    <h2>分数：{{ score }}</h2>
+    <h2>数学的分数：{{ score.Math }}</h2>
+    <h2>类说：{{ say.say }}</h2>
+    <h2>
+        {% if age > 18 and age < 40 %}
+            <p>青壮年</p>
+        {% elif age >= 40 %}
+            <p>中年</p>
+        {% else %}
+            <p>少年</p>
+        {% endif %}
+
+    </h2>
+    <ol>
+    {% for i in hobby %}
+        <li>{{ i }}</li>
+    {% endfor %}
+    </ol>
+    {% for k,v in score.items %}
+        <li>{{ k }}:{{ v }}</li>
+    {% endfor %}
+{#forloop:用来计算循环的次数#}
+    {% for i in hobby reversed %}
+        {{ forloop.counter }}.{{ i }}<br>
+    {% endfor %}
+
+    {% for i in hobby %}
+        {% if forloop.first %}
+            {{ forloop.counter }}.{{ i }}<br>
+        {% elif forloop.last%}
+            {{ forloop.counter }}.{{ i }}<br>
+        {% else %}
+            {{ forloop.counter }}.{{ i }}<br>
+        {% endif %}
+    {% endfor %}
+
+
+</body>
+</html>
