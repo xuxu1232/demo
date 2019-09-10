@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,re_path
 from . import views
+from app01 import views as app01views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +30,6 @@ urlpatterns = [
     path('abc/',views.abc),
     path('abcd/',views.abcd),
     re_path('yufa/(\d+)/',views.yufa),
-    path('staticdemo/',views.staticdemo)
+    path('staticdemo/',views.staticdemo),
+    path('app01index/',app01views.index),
 ]
