@@ -184,3 +184,135 @@ def getOneMore(request):
 
 
     return HttpResponse('一对多关系查询数据')
+
+def updateonemore(request):
+    # save
+    # book = Book.objects.get(id=3)
+    # book.publish = Publish.objects.get(name='中国出版社')
+    # book.save()
+
+    # update
+    # book = Book.objects.filter(name='python高阶')
+    # pub = Publish.objects.get(name='北大出版社')
+    # book.update(publish=pub)
+
+    # set
+    # pub = Publish.objects.get(name='清华出版社')
+    # book = Book.objects.get(id=3)
+    # pub.book_set.set([book])
+
+    return HttpResponse('一对多更新数据')
+
+def manytomanyadd(request):
+    # 增加teacher
+    # Teacher.objects.create(name='老张',gender='男')
+    # Teacher.objects.create(name='老李',gender='女')
+    # Teacher.objects.create(name='老温',gender='男')
+    # Teacher.objects.create(name='老刘',gender='女')
+
+    # 增加person
+    # pass
+
+    # 增加teacher_person
+    # create:增加新学员Mike,学习老张的课
+    # teacher_obj = Teacher.objects.filter(name='老张').first()
+    # teacher_obj.person.create(name='Mike',age=15,height=190)
+
+    # add:老学员张三  学习老刘的课
+    # teacher_obj = Teacher.objects.filter(name='老刘').first()
+    # person_obj = Person.objects.filter(name='张三').first()
+    # teacher_obj.person.add(person_obj)
+
+    # teacher_obj = Teacher.objects.filter(name='老温').first()
+    # person_obj = Person.objects.filter(name='jave').first()
+    # teacher_obj.person.add(person_obj)
+
+    return HttpResponse('多对多增加数据')
+
+def manytomanyget(request):
+    # 正向查询
+    # # 查询老刘教过的学生
+    # teacher_obj = Teacher.objects.filter(name='老刘').first()
+    # data = teacher_obj.person.all()
+    # print(data)
+
+    # 反向
+    # 查询张三学了谁的课
+    # person_obj = Person.objects.filter(name='张三').first()
+    # data = person_obj.teacher_set.all()
+    # print(data)
+
+    return HttpResponse('多对多查询')
+
+def manytomanyupdate(request):
+    # 正向
+    # 修改 老李的学生为java
+    # teacher_obj = Teacher.objects.filter(name='老李').first()
+    # person1 = Person.objects.filter(name='jave').first()
+    # teacher_obj.person.set([person1])
+
+    # 反向
+    # 修改张三的老师为老温
+    # person_obj = Person.objects.filter(name='张三').first()
+    # teacher1 = Teacher.objects.filter(name='老温').first()
+    # person_obj.teacher_set.set([teacher1])
+
+    return HttpResponse('多对多数据更新')
+
+def manytomanydelete(request):
+    # remove ：解除关系
+    # 老温不教张三
+    # 正向
+    # person_obj = Person.objects.filter(name='张三').first()
+    # teacher_obj = Teacher.objects.filter(name='老温').first()
+    # teacher_obj.person.remove(person_obj)
+
+    # 反向
+    # jave不学老李的课
+    # person_obj = Person.objects.filter(name='jave').first()
+    # teacher_obj = Teacher.objects.filter(name='老李').first()
+    # person_obj.teacher_set.remove(teacher_obj)
+
+    # delete():删除数据，解除关系
+    # 老温离职
+    # Teacher.objects.filter(name='老温').first().delete()
+
+    # jave辍学
+    # Person.objects.filter(name='jave').first().delete()
+
+
+    return HttpResponse('多对多删除')
+
+from django.db.models import Avg,Max,Min,Sum,Count,F,Q
+def juhequery(request):
+
+    # data = Person.objects.all().aggregate(Avg('age'))
+    # data = Person.objects.all().aggregate(avg_age=Avg('age'))
+    # print(data)
+    # data = Person.objects.all().aggregate(Max('age'))
+    # print(data)
+
+    # data = Person.objects.all().aggregate(Min('age'))
+    # print(data)
+
+    return HttpResponse('聚合查询')
+
+def Ftest(request):
+    # data = Book.objects.filter(num__gt=F('salled'))
+    # print(data)
+
+    return HttpResponse('F object test')
+
+def Qtest(request):
+    # and   &
+    # data = Book.objects.filter(Q(num=10)&Q(salled=100))
+    # print(data)
+
+    # or  |
+    # data = Book.objects.filter(Q(num=10)|Q(salled=100))
+    # print(data)
+
+    # not  ~
+    # data = Book.objects.filter(~Q(num=10)|~Q(num=100))
+    # print(data)
+    return HttpResponse('Q object test')

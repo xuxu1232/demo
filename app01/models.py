@@ -21,6 +21,16 @@ class Person(models.Model):
         # ordering = ['age','-id']
 
 
+class Teacher(models.Model):
+    name = models.CharField(max_length=32)
+    age = models.IntegerField(default=0)
+    gender = models.CharField(max_length=8)
+    person = models.ManyToManyField(to=Person)
+
+    class Meta:
+        db_table = 'teacher'
+
+
 
 class Publish(models.Model):
     name = models.CharField(max_length=32,verbose_name='出版社')
@@ -33,6 +43,8 @@ class Publish(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=32,verbose_name='书名')
+    num = models.IntegerField(default=10)
+    salled = models.IntegerField(default=10)
     publish = models.ForeignKey(to=Publish,to_field='id',on_delete=models.CASCADE)
 
     class Meta:
